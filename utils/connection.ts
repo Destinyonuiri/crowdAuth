@@ -35,11 +35,11 @@ export const consumeConnection = async (queue: string) => {
         const profile = await prisma.crowdAuth.update({
           where: { id: myData?.userID },
           data: {
-            profile: account?.profile[account?.profile.length - 1],
+            profile: account?.profile,
           },
         });
 
-        console.log(profile)
+
       await channel.ack(message);
     });
   } catch (error) {
