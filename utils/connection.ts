@@ -31,37 +31,18 @@ export const consumeConnection = async (queue: string) => {
         where: { id: myData?.userID },
       });
 
-      if (account?.profile.length === 0) {
+     
         account?.profile.push(myData);
 
         const prof = await prisma.crowdAuth.update({
           where: { id: myData?.userID },
           data: {
             profile: account?.profile,
-<<<<<<< HEAD
+
           },
         });
+     
 
-
-=======
-          },
-        });
-      } else {
-        let arr = account?.profile.filter((el: any) => {
-          return el.id !== myData.id;
-        });
-        account?.profile.push(myData);
-
-        const prof = await prisma.crowdAuth.update({
-          where: { id: myData?.userID },
-          data: {
-            profile: account?.profile,
-          },
-        });
-
-        console.log("resolved build: ", prof);
-      }
->>>>>>> 8d31d449238f04d6387fcca2cc599ace77dfd600
       await channel.ack(message);
     });
   } catch (error) {
