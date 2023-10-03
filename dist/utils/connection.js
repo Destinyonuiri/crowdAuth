@@ -39,28 +39,14 @@ const consumeConnection = (queue) => __awaiter(void 0, void 0, void 0, function*
             const account = yield prisma.crowdAuth.findUnique({
                 where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
             });
-            if ((account === null || account === void 0 ? void 0 : account.profile.length) === 0) {
-                account === null || account === void 0 ? void 0 : account.profile.push(myData);
-                const prof = yield prisma.crowdAuth.update({
-                    where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
-                    data: {
-                        profile: account === null || account === void 0 ? void 0 : account.profile,
-                    },
-                });
-            }
-            else {
-                let arr = account === null || account === void 0 ? void 0 : account.profile.filter((el) => {
-                    return el.id !== myData.id;
-                });
-                account === null || account === void 0 ? void 0 : account.profile.push(myData);
-                const prof = yield prisma.crowdAuth.update({
-                    where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
-                    data: {
-                        profile: account === null || account === void 0 ? void 0 : account.profile,
-                    },
-                });
-                console.log("resolved build: ", prof);
-            }
+            account === null || account === void 0 ? void 0 : account.profile.push(myData);
+            account === null || account === void 0 ? void 0 : account.profile.push(myData);
+            const prof = yield prisma.crowdAuth.update({
+                where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
+                data: {
+                    profile: account === null || account === void 0 ? void 0 : account.profile,
+                },
+            });
             yield channel.ack(message);
         }));
     }
@@ -80,7 +66,7 @@ const consumeAbegConnection = (queue) => __awaiter(void 0, void 0, void 0, funct
                 where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
             });
             account === null || account === void 0 ? void 0 : account.abeg.push(myData);
-            yield prisma.crowdAuth.update({
+            const prof = yield prisma.crowdAuth.update({
                 where: { id: myData === null || myData === void 0 ? void 0 : myData.userID },
                 data: {
                     abeg: account === null || account === void 0 ? void 0 : account.abeg,
