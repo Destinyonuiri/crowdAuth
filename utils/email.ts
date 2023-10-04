@@ -16,7 +16,7 @@ const oAuth = new google.auth.OAuth2(googleID, googleSecret, googleURL);
 
 oAuth.setCredentials({ access_token: googleRefresh });
 
-const URL: string = "https://crowded-auth.onrender.com";
+const URL: string = "https://localhost:5173";
 
 export const sendFirstEmail = async (account: any) => {
   try {
