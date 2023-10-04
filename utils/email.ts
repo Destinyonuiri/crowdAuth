@@ -16,7 +16,7 @@ const oAuth = new google.auth.OAuth2(googleID, googleSecret, googleURL);
 
 oAuth.setCredentials({ access_token: googleRefresh });
 
-const URL: string = "https://localhost:5173";
+const URL: string = "http://localhost:5173";
 
 export const sendFirstEmail = async (account: any) => {
   try {
